@@ -30,7 +30,7 @@ export const deleteToken = () => ({
 
 export const logIn = (username, password) => dispatch => {
   dispatch(fetchToken());
-  return axios.post('/api/auth/', {username, password})
+  return axios.post('/auth/', {username, password})
     .then(response => dispatch(receiveToken(response.data)))
     .catch(error => dispatch(receiveError(error)))
 };
