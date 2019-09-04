@@ -1,4 +1,5 @@
 import React from 'react';
+import * as moment from 'moment';
 import { connect } from 'react-redux';
 import { getPosts } from '../redux/posts/actions';
 
@@ -9,7 +10,6 @@ class Home extends React.Component {
 
   componentDidMount = () => {
     this.props.getPosts();
-    console.log(this.props)
   }
 
   render = () => {
@@ -18,7 +18,7 @@ class Home extends React.Component {
         key={post.pk}
         title={post.title}
         created_by={post.created_by}
-        created_at={post.created_at}
+        created_at={moment(post.created_at, "YYYYMMDD").fromNow()}
         body={post.body}
       />
     ))

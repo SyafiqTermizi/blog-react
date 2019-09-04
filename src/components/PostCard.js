@@ -7,7 +7,7 @@ const Card = props => (
         {props.title}
       </h5>
       <h6 className="card-subtitle mb-2 text-muted">
-        {props.created_by} {props.created_at}
+        {props.created_by}, {props.created_at}
       </h6>
       <p className="card-text">
         {props.body}
