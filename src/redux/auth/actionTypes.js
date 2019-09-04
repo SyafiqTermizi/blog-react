@@ -1,0 +1,4 @@
+export const FETCH_TOKEN = 'FETCH_TOKEN';
+export const RECEIVE_TOKEN = 'RECEIVE_TOKEN';
+export const DELETE_TOKEN = 'DELETE_TOKEN';
+export const RECEIVE_ERROR = 'RECEIVE_ERROR';
