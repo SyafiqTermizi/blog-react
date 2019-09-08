@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getPosts } from '../redux/posts/actions';
 
 import Card from '../components/PostCard';
+import Loading from '../components/Loading';
 
 
 class Home extends React.Component {
@@ -13,15 +14,18 @@ class Home extends React.Component {
   }
 
   render = () => {
-    const elem = this.props.posts.map(post => (
+    const posts = this.props.posts.map(post => (
       <Card
         key={post.pk}
+        pk={post.pk}
         title={post.title}
         created_by={post.created_by}
         created_at={moment(post.created_at, "YYYYMMDD").fromNow()}
         body={post.body}
       />
-    ))
+    ));
+    const elem = this.props.loading ? <Loading />: posts;
+
     return (
       <div className="row">
         <div className="col-12">
@@ -33,7 +37,8 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = ({posts}) => ({
-  posts: posts.posts
+  posts: posts.posts,
+  loading: posts.isFetching
 })
 
 const mapDispatchToProps = {

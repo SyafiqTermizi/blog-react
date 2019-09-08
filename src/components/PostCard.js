@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import ReadMore from './ReadMore';
 
@@ -14,9 +15,9 @@ const Card = props => (
       <br/>
       <ReadMore text={props.body} className="card-text"/>
       <div className="text-right">
-        <button className="btn btn-outline-primary">
+        <Link to={`detail/${props.pk}`} className="btn btn-outline-primary">
           Continue reading &gt;
-        </button>
+        </Link>
       </div>
     </div>
   </div>
