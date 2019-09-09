@@ -19,6 +19,13 @@ const Navbar = props => (
             </li>
           )
         }
+        {
+          props.auth.token && (
+            <li className="nav-item">
+              <Link className="nav-link" to="/create/">Add post</Link>
+            </li>
+          )
+        }
       </ul>
       <div className="my-2 my-lg-0" onClick={() => props.deleteToken()}>
         {props.auth.username && 'Logout'}

@@ -6,9 +6,9 @@ import {
 } from './actionTypes';
 
 const initialState = {
-  username: '',
-  email: '',
-  token: '',
+  username: 'admin',
+  email: 'admin@example.com',
+  token: '49c7973a28279aa4f1a6c2cd5e04ce72e05d54e8',
   isFetching: false,
   error: null
 };
@@ -36,7 +36,7 @@ export const auth = (state=initialState, action) => {
       }
 
     case DELETE_TOKEN:
-      return initialState;
+      return {};
 
     default:
       return state;

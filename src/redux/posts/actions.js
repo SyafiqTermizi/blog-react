@@ -22,3 +22,10 @@ export const getPosts = () => dispatch => {
     .then(response => dispatch(receivePost(response.data)))
     .catch(error => dispatch(receiveError(error)))
 };
+
+export const createPost = (post, token) => () => {
+  axios.defaults.headers.common = {'Authorization': "Token " + token};
+  return axios.post('/posts/', post)
+    .then(response => console.log(response.data))
+    .catch(error => console.log(error))
+};

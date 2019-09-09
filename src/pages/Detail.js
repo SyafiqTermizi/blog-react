@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import { connect } from 'react-redux';
 import { getPosts } from '../redux/posts/actions';
 
-import axios from '../axiosConfig'
+import axios from '../axiosConfig';
 import Loading from '../components/Loading';
 import CommentCard from '../components/CommentCard';
 
