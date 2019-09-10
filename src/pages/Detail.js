@@ -14,7 +14,7 @@ class Detail extends React.Component {
     return (
       <React.Fragment>
         <PostDetail id={id} />
-        <CommentForm />
+        <CommentForm id={id} />
         <CommentList id={id} />
       </React.Fragment>
     )

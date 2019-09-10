@@ -28,6 +28,6 @@ export const createComment = (isUserComment, id, token, comment) => dispatch => 
   axios.defaults.headers.common = {'Authorization': "Token " + token};
   const url = isUserComment ? `/comments/?user=${id}` : `/comments/?post=${id}`;
   axios.post(url, comment)
-    .then(_ => dispatch(getComments()))
+    .then(_ => dispatch(getComments(isUserComment, id)))
     .catch(error => console.log(error))
 };
