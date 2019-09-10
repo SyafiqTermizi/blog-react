@@ -13,7 +13,7 @@ export const posts = (state=initialState, action) => {
       return {...state, isFetching: true};
 
     case RECEIVE_POST:
-      return {posts: action.posts, isFetching: false};
+      return {...state, posts: action.posts, isFetching: false};
     
     case RECEIVE_ERROR:
       return {...state, error: action.error}

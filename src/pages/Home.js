@@ -1,6 +1,7 @@
 import React from 'react';
 import * as moment from 'moment';
 import { connect } from 'react-redux';
+
 import { getPosts } from '../redux/posts/actions';
 
 import Card from '../components/posts/PostCard';
