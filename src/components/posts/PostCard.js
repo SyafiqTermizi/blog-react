@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import ReadMore from './ReadMore';
+import ReadMore from '../ReadMore';
 
 const Card = props => (
   <div className="card mt-5">
