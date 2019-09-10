@@ -6,6 +6,7 @@ import { getPosts } from '../redux/posts/actions';
 import axios from '../axiosConfig';
 import Loading from '../components/Loading';
 import CommentCard from '../components/CommentCard';
+import CommentForm from '../components/CommentForm';
 
 class Detail extends React.Component {
 
@@ -67,6 +68,7 @@ class Detail extends React.Component {
         <div className="row">
           {post}
         </div>
+        <CommentForm />
         <div className="row">
           <div className="col-12">
             {comments}
