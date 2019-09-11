@@ -45,8 +45,8 @@ class PostDetail extends React.Component {
       )
 
     return (
-      <div className="row">
-        <div className="col-12">{post}</div>
+      <div className="row mt-5">
+        {post}
       </div>
     )
   }

@@ -19,7 +19,7 @@ const receiveError = error => ({
 export const getPosts = () => dispatch => {
   dispatch(fetchPost())
   return axios.get('/posts/')
-    .then(response => dispatch(receivePost(response.data)))
+    .then(response => dispatch(receivePost(response.data.results)))
     .catch(error => dispatch(receiveError(error)))
 };
 

@@ -14,8 +14,8 @@ const App = props => (
     <Navbar />
     <div className="container pt-5">
       <Route exact path="/" component={Home} />
-      <Route path="/login/" component={Login} />
       <Route path="/detail/:id" component={Detail} />
+      <Route path="/login/" component={Login} />
       <Route
         path="/create/"
         render={ () => props.token ? <Form token={props.token} />:<Login />}

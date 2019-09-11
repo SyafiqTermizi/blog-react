@@ -38,7 +38,7 @@ class Login extends React.Component {
         </div>
         )
       }
-      <div className="row">
+      <div className="row mt-5">
         <div className="col-4 offset-md-4">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">

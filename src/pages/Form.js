@@ -32,7 +32,7 @@ class Form extends React.Component {
     const elem = this.state.submitted ?
       <Redirect to="/" />:
       (
-      <div className="row">
+      <div className="row mt-5">
         <div className="col-12">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
