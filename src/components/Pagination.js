@@ -16,8 +16,7 @@ class Pagination extends React.Component {
   }
 
   handlePrev = () => {
-    if (this.state.offset<=0) return;
-    const offset = this.state.offset - this.props.limit
+    const offset = this.state.offset - this.props.limit;
     this.props.getPosts(this.props.limit, offset);
     this.setState({offset});
   }
@@ -28,13 +27,25 @@ class Pagination extends React.Component {
         <nav aria-label="Page navigation example">
           <ul className="pagination justify-content-center">
             <li className="page-item">
-              <button className="page-link" onClick={this.handlePrev}>Previous</button>
+              <button
+                disabled={this.state.offset<=0}
+                className="page-link"
+                onClick={this.handlePrev}
+              >
+                Previous
+              </button>
             </li>
             <li className="page-item"><a className="page-link" href="/#">1</a></li>
             <li className="page-item"><a className="page-link" href="/#">2</a></li>
             <li className="page-item"><a className="page-link" href="/#">3</a></li>
             <li className="page-item">
-              <button className="page-link" onClick={this.handleNext}>Next</button>
+              <button
+                disabled={this.state.offset === (this.props.count - this.props.limit)}
+                className="page-link"
+                onClick={this.handleNext}
+              >
+                Next
+              </button>
             </li>
           </ul>
         </nav>
