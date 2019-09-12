@@ -10,7 +10,9 @@ import PostCard from './PostCard';
 class PostList extends React.Component {
 
   componentDidMount = () => {
-    this.props.getPosts();
+    if (this.props.posts.length === 0) {
+      this.props.getPosts(this.props.limit);
+    };
   }
 
   render = () => {
@@ -36,9 +38,10 @@ class PostList extends React.Component {
   }
 };
 
-const mapStateToProps = ({posts}) => ({
+const mapStateToProps = ({posts, pagination}) => ({
   posts: posts.posts,
-  loading: posts.isFetching
+  loading: posts.isFetching,
+  limit: pagination.limit
 });
 
 const mapDispatchToProps = {

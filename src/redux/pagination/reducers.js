@@ -1,9 +1,8 @@
-import { SET_LIMIT, SET_OFFSET, SET_COUNT } from './actionTypes';
+import { SET_LIMIT, SET_COUNT } from './actionTypes';
 
 const initialState = {
   limit: 5,
-  offset: 0,
-  count: 0
+  count: 0,
 }
 
 export const pagination = (state=initialState, action) => {
@@ -11,9 +10,6 @@ export const pagination = (state=initialState, action) => {
 
     case SET_LIMIT:
       return {...state, limit: action.limit}
-
-    case SET_OFFSET:
-      return {...state, offset: action.offset}
     
     case SET_COUNT:
       return {...state, count: action.count}

@@ -1,5 +1,7 @@
 import { FETCH_POST, RECEIVE_POST, RECEIVE_ERROR } from './actionTypes';
 
+import { setCount } from '../pagination/actions';
+
 import axios from '../../axiosConfig';
 
 const fetchPost = () => ({
@@ -16,10 +18,17 @@ const receiveError = error => ({
   error
 });
 
-export const getPosts = () => dispatch => {
-  dispatch(fetchPost())
-  return axios.get('/posts/')
-    .then(response => dispatch(receivePost(response.data.results)))
+export const getPosts = (limit, offset) => dispatch => {
+  let url = limit ? `/posts/?limit=${limit}` : `/posts/?limit=5`;
+  url = offset ? `${url}&offset=${offset}`: url;
+
+  dispatch(fetchPost());
+
+  return axios.get(url)
+    .then(response => {
+      dispatch(receivePost(response.data.results));
+      dispatch(setCount(response.data.count));
+    })
     .catch(error => dispatch(receiveError(error)))
 };
 

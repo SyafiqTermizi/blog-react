@@ -23,7 +23,6 @@ class Form extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const {post, token} = this.state;
-    console.log(token)
     this.props.createPost(post, token);
     this.setState({submitted: true})
   }
