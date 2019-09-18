@@ -10,15 +10,15 @@ class Pagination extends React.Component {
   }
 
   handleNext = () => {
-    const offset = this.state.offset + this.props.limit;
-    this.props.getPosts(this.props.limit, offset);
-    this.setState({offset});
+    const newOffset = this.state.offset + this.props.limit;
+    this.props.getPosts(this.props.limit, newOffset);
+    this.setState({offset: newOffset});
   }
 
   handlePrev = () => {
-    const offset = this.state.offset - this.props.limit;
-    this.props.getPosts(this.props.limit, offset);
-    this.setState({offset});
+    const newOffset = this.state.offset - this.props.limit;
+    this.props.getPosts(this.props.limit, newOffset);
+    this.setState({offset: newOffset});
   }
 
   render = () => (
