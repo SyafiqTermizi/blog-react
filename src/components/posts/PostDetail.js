@@ -14,7 +14,6 @@ class PostDetail extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props)
     const id = this.props.id;
     const post = this.props.posts.filter(post => String(post.pk) === id);
 
