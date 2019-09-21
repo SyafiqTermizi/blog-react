@@ -1,9 +1,9 @@
 import {
   LOADING,
-  RECEIVE_POST,
-  RECEIVE_ERROR,
-  RECEIVE_SUCCESS,
-  RESET_SUCCESS
+  RECEIVE_POSTS,
+  RECEIVE_FORM_ERROR,
+  RECEIVE_FORM_SUCCESS,
+  RESET_FORM_SUCCESS
 } from './actionTypes';
 
 const initialState = {
@@ -19,16 +19,16 @@ export const posts = (state=initialState, action) => {
     case LOADING:
       return {...state, loading: true};
 
-    case RECEIVE_POST:
+    case RECEIVE_POSTS:
       return {...state, posts: action.posts, loading: false};
     
-    case RECEIVE_ERROR:
-      return {...state, errors: action.error, loading: false}
+    case RECEIVE_FORM_ERROR:
+      return {...state, errors: action.errors, loading: false}
 
-    case RECEIVE_SUCCESS:
+    case RECEIVE_FORM_SUCCESS:
       return {...initialState, success: true}
 
-    case RESET_SUCCESS:
+    case RESET_FORM_SUCCESS:
       return initialState
 
     default:

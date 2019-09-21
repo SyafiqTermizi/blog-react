@@ -1,36 +1,24 @@
 import {
   LOADING,
-  RECEIVE_POST,
-  RECEIVE_ERROR,
-  RECEIVE_SUCCESS,
-  RESET_SUCCESS
+  RECEIVE_POSTS,
+  RECEIVE_FORM_ERROR,
+  RECEIVE_FORM_SUCCESS,
+  RESET_FORM_SUCCESS
 } from './actionTypes';
 
 import { setCount } from '../pagination/actions';
 
 import axios from '../../axiosConfig';
 
-const loading = () => ({
-  type: LOADING
-});
+const loading = () => ({ type: LOADING });
 
-const receivePost = posts => ({
-  type: RECEIVE_POST,
-  posts
-});
+const receivePosts = posts => ({ type: RECEIVE_POSTS, posts });
 
-const receiveError = error => ({
-  type: RECEIVE_ERROR,
-  error
-});
+const receiveFormErrors = errors => ({ type: RECEIVE_FORM_ERROR, errors });
 
-const receiveSuccess = _ => ({
-  type: RECEIVE_SUCCESS
-});
+const receiveFormSuccess = _ => ({ type: RECEIVE_FORM_SUCCESS });
 
-export const resetSuccess = _ => ({
-  type: RESET_SUCCESS
-});
+export const resetFormSuccess = _ => ({ type: RESET_FORM_SUCCESS });
 
 export const getPosts = (limit, offset) => dispatch => {
   let url = limit ? `/posts/?limit=${limit}` : `/posts/?limit=5`;
@@ -39,7 +27,7 @@ export const getPosts = (limit, offset) => dispatch => {
   dispatch(loading());
   return axios.get(url)
     .then(response => {
-      dispatch(receivePost(response.data.results));
+      dispatch(receivePosts(response.data.results));
       dispatch(setCount(response.data.count));
     })
 };
@@ -49,6 +37,6 @@ export const createPost = (post, token) => dispatch => {
 
   dispatch(loading());
   return axios.post('/posts/', post)
-    .then(_ => dispatch(receiveSuccess()))
-    .catch(error => dispatch(receiveError(error.response.data)))
+    .then(_ => dispatch(receiveFormSuccess()))
+    .catch(error => dispatch(receiveFormErrors(error.response.data)))
 };

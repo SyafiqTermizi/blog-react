@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPost, resetSuccess } from '../redux/posts/actions';
+import { createPost, resetFormSuccess } from '../redux/posts/actions';
 import { Redirect } from 'react-router-dom';
 
 import FieldErrors from '../components/errors/FieldErrors';
@@ -28,7 +28,7 @@ class Form extends React.Component {
   }
 
   componentWillUnmount = () => {
-    this.props.resetSuccess();
+    this.props.resetFormSuccess();
   }
 
   render = () => {
@@ -74,7 +74,7 @@ class Form extends React.Component {
   }
 }
 
-const mapDispatchToProps = { createPost, resetSuccess };
+const mapDispatchToProps = { createPost, resetFormSuccess };
 
 const mapStateToProps = ({ posts }) => ({
   loading: posts.loading,
