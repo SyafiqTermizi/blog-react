@@ -1,3 +1,5 @@
-export const FETCH_POST = 'FETCH_POST';
+export const LOADING = 'LOADING';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const RECEIVE_ERROR = 'RECEIVE_ERROR';
+export const RECEIVE_SUCCESS = 'RECEIVE_SUCCESS';
+export const RESET_SUCCESS = 'RESET_SUCCESS';

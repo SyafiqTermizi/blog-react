@@ -1,11 +1,17 @@
-import { FETCH_POST, RECEIVE_POST, RECEIVE_ERROR } from './actionTypes';
+import {
+  LOADING,
+  RECEIVE_POST,
+  RECEIVE_ERROR,
+  RECEIVE_SUCCESS,
+  RESET_SUCCESS
+} from './actionTypes';
 
 import { setCount } from '../pagination/actions';
 
 import axios from '../../axiosConfig';
 
-const fetchPost = () => ({
-  type: FETCH_POST
+const loading = () => ({
+  type: LOADING
 });
 
 const receivePost = posts => ({
@@ -18,23 +24,31 @@ const receiveError = error => ({
   error
 });
 
+const receiveSuccess = _ => ({
+  type: RECEIVE_SUCCESS
+});
+
+export const resetSuccess = _ => ({
+  type: RESET_SUCCESS
+});
+
 export const getPosts = (limit, offset) => dispatch => {
   let url = limit ? `/posts/?limit=${limit}` : `/posts/?limit=5`;
   url = offset ? `${url}&offset=${offset}`: url;
 
-  dispatch(fetchPost());
-
+  dispatch(loading());
   return axios.get(url)
     .then(response => {
       dispatch(receivePost(response.data.results));
       dispatch(setCount(response.data.count));
     })
-    .catch(error => dispatch(receiveError(error)))
 };
 
-export const createPost = (post, token) => () => {
+export const createPost = (post, token) => dispatch => {
   axios.defaults.headers.common = {'Authorization': "Token " + token};
+
+  dispatch(loading());
   return axios.post('/posts/', post)
-    .then(response => console.log(response.data))
-    .catch(error => console.log(error))
+    .then(_ => dispatch(receiveSuccess()))
+    .catch(error => dispatch(receiveError(error.response.data)))
 };

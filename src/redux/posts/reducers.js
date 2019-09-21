@@ -1,22 +1,35 @@
-import { FETCH_POST, RECEIVE_POST, RECEIVE_ERROR } from './actionTypes';
+import {
+  LOADING,
+  RECEIVE_POST,
+  RECEIVE_ERROR,
+  RECEIVE_SUCCESS,
+  RESET_SUCCESS
+} from './actionTypes';
 
 const initialState = {
   posts: [],
-  isFetching: false,
-  error: null
+  loading: false,
+  errors: null,
+  success: false
 }
 
 export const posts = (state=initialState, action) => {
   switch(action.type) {
 
-    case FETCH_POST:
-      return {...state, isFetching: true};
+    case LOADING:
+      return {...state, loading: true};
 
     case RECEIVE_POST:
-      return {...state, posts: action.posts, isFetching: false};
+      return {...state, posts: action.posts, loading: false};
     
     case RECEIVE_ERROR:
-      return {...state, error: action.error}
+      return {...state, errors: action.error, loading: false}
+
+    case RECEIVE_SUCCESS:
+      return {...initialState, success: true}
+
+    case RESET_SUCCESS:
+      return initialState
 
     default:
       return state;

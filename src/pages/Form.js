@@ -1,16 +1,17 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createPost } from '../redux/posts/actions';
+import { createPost, resetSuccess } from '../redux/posts/actions';
+import { Redirect } from 'react-router-dom';
+
+import FieldErrors from '../components/errors/FieldErrors';
 
 class Form extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      post: {title: '', body: 'Post Body'},
+      post: {title: '', body: ''},
       token: this.props.token,
-      submitted: false
     }
   }
 
@@ -24,48 +25,61 @@ class Form extends React.Component {
     event.preventDefault();
     const {post, token} = this.state;
     this.props.createPost(post, token);
-    this.setState({submitted: true})
+  }
+
+  componentWillUnmount = () => {
+    this.props.resetSuccess();
   }
 
   render = () => {
-    const elem = this.state.submitted ?
+    const errors = this.props.errors ? this.props.errors : {};
+    const elem = this.props.success ?
       <Redirect to="/" />:
-      (
-      <div className="row mt-5">
+      (<div className="row mt-5">
         <div className="col-12">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Title"
-                name="title"
-                onChange={this.handleChange}
-                value={this.state.post.title}
-              />
+              <div className="input-group">
+                <input
+                  type="text"
+                  className={"form-control " + (errors.title ? " is-invalid": "")}
+                  placeholder="Title"
+                  name="title"
+                  onChange={this.handleChange}
+                  value={this.state.post.title}
+                />
+                <FieldErrors errors={errors.title} />
+              </div>
             </div>
             <div className="form-group">
-              <textarea
-                className="form-control"
-                rows="3"
-                name="body"
-                onChange={this.handleChange}
-                value={this.state.post.body}
-              />
+              <div className="input-group">
+                <textarea
+                  className={"form-control " + (errors.body ? " is-invalid": "")}
+                  rows="3"
+                  name="body"
+                  onChange={this.handleChange}
+                  value={this.state.post.body}
+                  placeholder="Post Body"
+                />
+                <FieldErrors errors={errors.body} />
+              </div>
             </div>
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
           </form>
         </div>
-      </div>
-      )
+      </div>)
     return elem;
   }
 }
 
-const mapDispatchToProps = {
-  createPost
-};
+const mapDispatchToProps = { createPost, resetSuccess };
 
-export default connect(null, mapDispatchToProps)(Form);
+const mapStateToProps = ({ posts }) => ({
+  loading: posts.loading,
+  errors: posts.errors,
+  success: posts.success
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

@@ -40,7 +40,7 @@ class PostList extends React.Component {
 
 const mapStateToProps = ({posts, pagination}) => ({
   posts: posts.posts,
-  loading: posts.isFetching,
+  loading: posts.loading,
   limit: pagination.limit
 });
 
