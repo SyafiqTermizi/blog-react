@@ -7,10 +7,14 @@ import {
 } from './actionTypes';
 
 const initialState = {
-  posts: [],
   loading: false,
-  errors: null,
-  success: false
+
+  posts: [],
+  postCount: 0,
+  postLimit: 5,
+
+  formErrors: null,
+  formSuccess: false
 }
 
 export const posts = (state=initialState, action) => {
@@ -20,16 +24,21 @@ export const posts = (state=initialState, action) => {
       return {...state, loading: true};
 
     case RECEIVE_POSTS:
-      return {...state, posts: action.posts, loading: false};
+      return {
+        ...state,
+        posts: action.posts,
+        postCount: action.count,
+        loading: false
+      };
     
     case RECEIVE_FORM_ERROR:
-      return {...state, errors: action.errors, loading: false}
+      return {...state, formErrors: action.errors, loading: false}
 
     case RECEIVE_FORM_SUCCESS:
-      return {...initialState, success: true}
+      return {...initialState, formSuccess: true, loading: false}
 
     case RESET_FORM_SUCCESS:
-      return {...state, errors: null, success: false}
+      return {...state, formErrors: null, formSuccess: false, loading: false}
 
     default:
       return state;

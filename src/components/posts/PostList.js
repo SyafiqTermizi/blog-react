@@ -7,6 +7,8 @@ import { getPosts } from '../../redux/posts/actions';
 import Loading from '../Loading';
 import PostCard from './PostCard';
 
+import Pagination from '../Pagination';
+
 class PostList extends React.Component {
 
   componentDidMount = () => {
@@ -29,19 +31,31 @@ class PostList extends React.Component {
     const elem = this.props.loading ? <Loading />: posts;
 
     return (
-      <div className="row">
-        <div className="col-12">
-          {elem}
+      <React.Fragment>
+        <div className="row">
+          <div className="col-12">
+            {elem}
+          </div>
         </div>
-      </div>
+        <div className="row">
+          <div className="col-12">
+            <Pagination
+              limit={this.props.limit}
+              count={this.props.count}
+              getter={this.props.getPosts}
+            />
+          </div>
+        </div>
+      </React.Fragment>
     )
   }
 };
 
-const mapStateToProps = ({posts, pagination}) => ({
+const mapStateToProps = ({ posts }) => ({
   posts: posts.posts,
   loading: posts.loading,
-  limit: pagination.limit
+  limit: posts.postLimit,
+  count: posts.postCount
 });
 
 const mapDispatchToProps = {

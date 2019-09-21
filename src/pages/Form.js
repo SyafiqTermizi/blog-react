@@ -78,8 +78,8 @@ const mapDispatchToProps = { createPost, resetFormSuccess };
 
 const mapStateToProps = ({ posts }) => ({
   loading: posts.loading,
-  errors: posts.errors,
-  success: posts.success
+  errors: posts.formErrors,
+  success: posts.formSuccess
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
