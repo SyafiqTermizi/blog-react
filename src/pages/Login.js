@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { logIn } from '../redux/auth/actions';
 
+import FieldErrors from '../components/errors/FieldErrors';
+import NonFieldErrors from '../components/errors/NonFieldErros';
+
 
 class Login extends React.Component {
 
@@ -24,57 +27,50 @@ class Login extends React.Component {
     }
   }
 
-  render = () => (
-    <React.Fragment>
-      {
-        this.props.auth.error &&
-       (
-        <div className="row">
+  render = () => {
+    const error = this.props.auth.error ? this.props.auth.error : {};
+    return (
+      <React.Fragment>
+        <div className="row mt-5">
           <div className="col-4 offset-md-4">
-            <div className="alert alert-danger" role="alert">
-              Inavalid Username/Password
-            </div>
+            {error.non_field_errors && <NonFieldErrors errors={error.non_field_errors} />}
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <div className="input-group">
+                  <input
+                    type="text"
+                    name="username"
+                    className={"form-control " + (error.username ? " is-invalid": "")}
+                    placeholder="Username"
+                    onChange={this.handleChange}
+                    required
+                  />
+                  <FieldErrors errors={error.username}/>
+                </div>
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  name="password"
+                  className={"form-control " + (error.password ? " is-invalid": "")}
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                  required
+                />
+                <FieldErrors errors={error.password}/>
+              </div>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </form>
           </div>
         </div>
-        )
-      }
-      <div className="row mt-5">
-        <div className="col-4 offset-md-4">
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <input
-                type="text"
-                name="username"
-                className="form-control"
-                placeholder="Username"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                placeholder="Password"
-                onChange={this.handleChange}
-              />
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-    </React.Fragment>
-  )
+      </React.Fragment>
+    )
+  }
 }
 
-const mapStateToProps = ({auth}) => ({
-  auth
-});
-
-const mapDispatchToProps = {
-  logIn
-};
+const mapStateToProps = ({auth}) => ({ auth });
+const mapDispatchToProps = { logIn };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
