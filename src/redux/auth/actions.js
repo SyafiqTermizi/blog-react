@@ -19,12 +19,6 @@ const receiveToken = ({ username, email, token }) => ({
   token
 });
 
-// field error
-// - error.response.data.[fieldName] : [arr of error]
-// 
-// non field error
-// - error.response.data.non_field_errors: [array of non field error]
-
 const receiveError = error => ({
   type: RECEIVE_ERROR,
   error

@@ -29,7 +29,7 @@ export const posts = (state=initialState, action) => {
       return {...initialState, success: true}
 
     case RESET_FORM_SUCCESS:
-      return initialState
+      return {...state, errors: null, success: false}
 
     default:
       return state;
