@@ -6,9 +6,9 @@ import {
 } from './actionTypes';
 
 const initialState = {
-  username: 'admin',
-  email: 'kambing',
-  token: '49c7973a28279aa4f1a6c2cd5e04ce72e05d54e8',
+  username: '',
+  email: '',
+  token: '',
   isFetching: false,
   error: null
 };
