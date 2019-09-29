@@ -36,7 +36,12 @@ export const auth = (state=initialState, action) => {
       }
 
     case DELETE_TOKEN:
-      return {};
+      return {
+        ...state,
+        username: '',
+        email: '',
+        token: '',
+      };
 
     default:
       return state;
