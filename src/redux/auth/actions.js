@@ -8,18 +8,18 @@ import {
 import axios from '../../axiosConfig';
 
 
-const fetchToken = () => ({
+export const fetchToken = () => ({
   type: FETCH_TOKEN
 });
 
-const receiveToken = ({ username, email, token }) => ({
+export const receiveToken = ({ username, email, token }) => ({
   type: RECEIVE_TOKEN,
   username,
   email,
   token
 });
 
-const receiveError = error => ({
+export const receiveError = error => ({
   type: RECEIVE_ERROR,
   error
 });

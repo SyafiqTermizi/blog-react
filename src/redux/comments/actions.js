@@ -2,16 +2,16 @@ import { FETCH_COMMENTS, RECEIVE_COMMENTS, RECEIVE_ERROR } from './actionTypes';
 
 import axios from '../../axiosConfig';
 
-const fetchComments = () => ({
+export const fetchComments = () => ({
   type: FETCH_COMMENTS
 });
 
-const receiveComments = comments => ({
+export const receiveComments = comments => ({
   type: RECEIVE_COMMENTS,
   comments
 });
 
-const receiveError = error => ({
+export const receiveError = error => ({
   type: RECEIVE_ERROR,
   error
 });

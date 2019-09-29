@@ -8,13 +8,13 @@ import {
 
 import axios from '../../axiosConfig';
 
-const loading = () => ({ type: LOADING });
+export const loading = () => ({ type: LOADING });
 
-const receivePosts = (posts, count) => ({ type: RECEIVE_POSTS, posts, count });
+export const receivePosts = (posts, count) => ({ type: RECEIVE_POSTS, posts, count });
 
-const receiveFormErrors = errors => ({ type: RECEIVE_FORM_ERROR, errors });
+export const receiveFormErrors = errors => ({ type: RECEIVE_FORM_ERROR, errors });
 
-const receiveFormSuccess = _ => ({ type: RECEIVE_FORM_SUCCESS });
+export const receiveFormSuccess = _ => ({ type: RECEIVE_FORM_SUCCESS });
 
 export const resetFormSuccess = _ => ({ type: RESET_FORM_SUCCESS });
 
