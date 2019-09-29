@@ -43,6 +43,7 @@ class PostList extends React.Component {
               limit={this.props.limit}
               count={this.props.count}
               getter={this.props.getPosts}
+              pageCount={Math.ceil(this.props.count/this.props.limit)}
             />
           </div>
         </div>

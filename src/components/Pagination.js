@@ -2,10 +2,7 @@ import React from 'react';
 
 class Pagination extends React.Component {
 
-  state = {
-    offset: 0,
-    pageCount: 0
-  }
+  state = { offset: 0 }
 
   handleNext = () => {
     const newOffset = this.state.offset + this.props.limit;
@@ -13,29 +10,27 @@ class Pagination extends React.Component {
     this.setState({offset: newOffset});
   }
 
+  handlePrev = () => {
+    const newOffset = this.state.offset - this.props.limit;
+    this.props.getter(this.props.limit, newOffset);
+    this.setState({ offset: newOffset });
+  }
+
   jumpToPage = offset => {
     this.props.getter(this.props.limit, offset);
     this.setState({ offset });
   }
 
-  handlePrev = () => {
-    const newOffset = this.state.offset - this.props.limit;
-    this.props.getter(this.props.limit, newOffset);
-    this.setState({offset: newOffset});
-  }
-
-  componentDidUpdate = prevProps => {
-    if (prevProps.count !== this.props.count) {
-      this.setState({pageCount: Math.ceil(this.props.count/this.props.limit)})
-    }
-  }
-
   render = () => {
     const elem = [];
-    for (let i = 0; i < this.state.pageCount; i++) {
+    for (let i = 0; i < this.props.pageCount; i++) {
       elem.push(
         <li key={i} className="page-item">
-          <a className="page-link" onClick={() => this.jumpToPage(i*5)} href="/#">
+          <a
+            className="page-link"
+            onClick={() => this.jumpToPage(i*this.props.limit)}
+            href="/#"
+          >
             {i + 1}
           </a>
         </li>
