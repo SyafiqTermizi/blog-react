@@ -29,4 +29,4 @@ size game cold girl off how old.';
     const enzymeWrapper = shallow(<ReadMore text={text} className='test' />);
     expect(enzymeWrapper.find('p').text()).toEqual('short text')
   });
-})
+});

@@ -27,7 +27,7 @@ class Pagination extends React.Component {
       elem.push(
         <li key={i} className="page-item">
           <a
-            className="page-link"
+            className="page-link page-number"
             onClick={() => this.jumpToPage(i*this.props.limit)}
             href="/#"
           >
@@ -45,7 +45,7 @@ class Pagination extends React.Component {
               <li className="page-item">
                 <button
                   disabled={this.state.offset<=0}
-                  className="page-link"
+                  className="page-link prev"
                   onClick={this.handlePrev}
                 >
                   Previous
@@ -55,7 +55,7 @@ class Pagination extends React.Component {
               <li className="page-item">
                 <button
                   disabled={this.state.offset === (this.props.count - this.props.limit)}
-                  className="page-link"
+                  className="page-link next"
                   onClick={this.handleNext}
                 >
                   Next
